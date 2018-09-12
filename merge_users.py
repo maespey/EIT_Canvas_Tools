@@ -2,7 +2,7 @@ from canvasapi import Canvas
 import config
 
 
-canvas = Canvas(API_URL, API_KEY)
+canvas = Canvas(config.API_URL, config.API_KEY)
 
 def getLocalUser():
     localUser = canvas.get_user(input("Enter the Local UserID from Canvas:"))
@@ -13,7 +13,6 @@ def getHawkIDUser():
     guestHawkID = canvas.get_user(input("Enter the new Guest HawkID's UserID in Canvas:"))
     print("Here is the user you selected: " + str(guestHawkID))
     return guestHawkID
-
 
 
 newUser = localUser.merge_into(guestHawkID)
