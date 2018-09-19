@@ -8,8 +8,6 @@ accountIDs = [6,7,8,9,10,11,12,13,14,15,16,17,18]
 
 filename = "DOE_Admin.csv"
 
-writer = None
-
 csv = open(filename, "w")
 csv.write("username,role,role_id,subaccount\n")
 
