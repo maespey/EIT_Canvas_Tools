@@ -5,68 +5,71 @@ import csv
 
 canvas = Canvas(config.API_URL, config.API_KEY)
 
-def getLocalUser(ID):
-    if ID == None:
-        localUser = canvas.get_user(\
-            input("Enter the Local UserID from Canvas:"))
-        print("Here is the user you selected: " + str(localUser))
+def getLocalUser(user_id):
+    if user_id == None:
+        local_user = canvas.get_user(\
+            input("Enter the Local UserID from Canvas:")
+            )
+        print("Here is the user you selected: " + str(local_user))
 
     else:
-        localUser = canvas.get_user(ID)
-    return localUser
+        local_user = canvas.get_user(user_id)
+    return local_user
 
-def getHawkIDUser(ID):
-    if ID == None:
-        guestUser = canvas.get_user(\
+def getHawkIDUser(user_id):
+    if user_id == None:
+        guest_user = canvas.get_user(\
             input("Enter the new Guest HawkID's UserID in Canvas:"))
-        print("Here is the user you selected: " + str(guestUser))
+        print("Here is the user you selected: " + str(guest_user))
 
     else:
-        guestUser = canvas.get_user(ID)
-    return guestUser
+        guest_user = canvas.get_user(user_id)
+    return guest_user
 
 
 ##___________________________________________________________________________##
 
-if (input("Would like to read from users.csv? (Y/N)  ")\
+def main:
+    if (input("Would like to read from users.csv? (Y/N)  ")\
             in ["Y", "y", "yes", "Yes"]):
-    with open('users.csv') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=",")
+        with open('users.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=",")
+            merge_count = 0
+            for row in csv_reader:
+                if merge_count == 0:
+                    print("\n\nMerging users from users.csv...")
+                    merge_count += 1
+
+                else:
+                    local_user = getLocalUser(row[0])
+                    guest_user = getHawkIDUser(row[1])
+                    print(f'  -> merging {local_user} into {guest_user}')
+                    local_user.merge_into(guest_user)
+                    merge_count += 1
+
+            print(f'{merge_count-1} accounts have been merged on {config.domain}.')
+
+
+    else:
+        more_users = True
         merge_count = 0
-        for row in csv_reader:
-            if merge_count == 0:
-                print("\n\nMerging users from users.csv...")
-                merge_count += 1
+        while more_users:
+            local_user = getLocalUser()
+            guest_user = getHawkIDUser()
 
-            else:
-                localUser = getLocalUser(row[0])
-                guestUser = getHawkIDUser(row[1])
-                print(f'  -> merging {localUser} into {guestUser}')
-                localUser.merge_into(guestUser)
-                merge_count += 1
+            new_user = local_user.merge_into(guest_user)
+            print("You have successfully merged the accounts."\
+                "\n  -> The merged user is: " + str(new_user)
+                )
 
-        print(f'{merge_count-1} accounts have been merged on {config.domain}.')
+            if (input("Do you have more to merge? (Y/N)  ")\
+                    in ["Y", "y", "yes", "Yes"]):
+                more_users = True
+            else: more_users = False
+            merge_count += 1
+            print("")
 
+        print(f"{merge_count} users have been merged\n\n")
 
-else:
-    more_users = True
-    merge_count = 0
-    while more_users:
-        # localUser = getLocalUser()
-        # guestUser = getHawkIDUser()
-
-        newUser = "guestUser"
-
-        #newUser = localUser.merge_into(guestUser)
-        print("You have successfully merged the accounts."\
-            "\n  -> The merged user is: " + str(newUser))
-
-        if (input("Do you have more to merge? (Y/N)  ")\
-                in ["Y", "y", "yes", "Yes"]):
-            more_users = True
-        else: more_users = False
-        merge_count += 1
-        print("")
-
-    print(f"{merge_count} users have been merged\n\n")
-
+if __name__ == "__main__":
+    main()
