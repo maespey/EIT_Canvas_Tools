@@ -29,7 +29,7 @@ def getHawkIDUser(user_id):
 
 ##___________________________________________________________________________##
 
-def main:
+def main():
     if (input("Would like to read from users.csv? (Y/N)  ")\
             in ["Y", "y", "yes", "Yes"]):
         with open('users.csv') as csv_file:
