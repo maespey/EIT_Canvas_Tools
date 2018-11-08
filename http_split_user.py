@@ -4,7 +4,7 @@ import json
 
 headers = {'Authorization' : 'Bearer ' + '%s' % config.API_KEY}
 
-user_id = input("Enter the user's UserID in Canvas:")
+user_id = input("Enter the user's UserID in Canvas: ")
 
 url = config.API_URL + 'api/v1/' + 'users/'+ str(user_id) + "/split"
 print(url)
