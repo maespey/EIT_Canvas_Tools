@@ -1,10 +1,13 @@
 # Enterprise Instructional Technology Canvas Tools
+
+# Getting Started
 ### Welcome
 #### There are a few prerequisites before you can get started:
 * Python 3.x.x (I am using 3.7.0)
   * https://www.python.org/downloads/
 * UCF's Python Wraper for the Canvas API
-  * https://github.com/ucfopen/canvasapi [Read the Docs](http://canvasapi.readthedocs.io/)
+  * https://github.com/ucfopen/canvasapi
+  * [Read the Docs](http://canvasapi.readthedocs.io/)
   * Clone -> `https://github.com/ucfopen/canvasapi.git` if you would like to contribute to their project
   * Run -> `pip install canvasapi` if you just want to use their project
 * config.py for your Canvas installation
@@ -38,3 +41,13 @@ domain = "Campus.beta.instructure.edu"
 ```
 
 #### For the common tools I have tried to be sure to prompt for user input instead of using hard coded variables, but be sure that you fully understand the implications of running whatever command you are running.
+
+#### The [Github Desktop](https://desktop.github.com/) client is easy to use and works well. It allows you to keep an up to date copy of the repository, but requires that you have a Github account.
+
+
+# Updating
+#### There are a few things that will need to be updated from time to time:
+* Github should update without prompt
+* Python:
+* PIP: 
+* CanvasAPI: 
