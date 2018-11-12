@@ -6,17 +6,17 @@ canvas = Canvas(config.API_URL, config.API_KEY)
 
 account_id_lst = []
 
-def get_subaccounts(account):
-    subaccounts = account.get_subaccounts(True) # Get all subaccounts in an account
-    for subaccount in subaccounts:
-        account_id_lst.append(subaccount.id)
-
 write_file = input("What would you like to name your file? ")
 
 csv_w_file = open(write_file, 'w')
 csv_w_file.write('course_id,short_name,long_name\n')
 
 line_count = 0
+
+def get_subaccounts(account):
+    subaccounts = account.get_subaccounts(True) # Get all subaccounts in an account
+    for subaccount in subaccounts:
+        account_id_lst.append(subaccount.id)
 
 def buildLine(course, account):
     try:
