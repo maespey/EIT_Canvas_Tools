@@ -56,8 +56,6 @@ def main():
                 course_account_id = course.account_id
                 account = canvas.get_account(course_account_id)
 
-                print(account)
-
                 if course.account_id in account_id_lst:
                     None
                 else:
@@ -65,6 +63,10 @@ def main():
                     # print(line)
                     if line != None:
                         csv_w_file.write(line)
+                    print("*********\nThe Course " + course.name)
+                    print("appears in Account " + str(account))
+                    print("*********")
+
 
 if __name__ == "__main__":
     main()
