@@ -5,15 +5,15 @@ import csv
 headers = {'Authorization' : 'Bearer ' + '%s' % config.API_KEY}
 
 def main():
-    course_id = 109395
+    term_id = 95
 
-    #print(str(course_id) + ": " + str(term_id))
+    print(str(course_id) + ": " + str(term_id))
 
-    #payload = {'term_id[]': term_id}
+    payload = {'enrollment_term_id[]': term_id}
 
     url = config.API_URL + 'api/v1/' + 'courses/'+ str(course_id)
     print(url)
-    results = requests.get(url, headers = headers)
+    results = requests.put(url, params=payload, headers = headers)
     print("The call returned \"" + str(results.status_code) + "\"")
 
     response = results.text
