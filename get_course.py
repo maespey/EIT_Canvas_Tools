@@ -7,8 +7,6 @@ headers = {'Authorization' : 'Bearer ' + '%s' % config.API_KEY}
 def main():
     course_id = 109395
 
-    #print(str(course_id) + ": " + str(term_id))
-
     #payload = {'term_id[]': term_id}
 
     url = config.API_URL + 'api/v1/' + 'courses/'+ str(course_id)
